@@ -15,12 +15,13 @@ import { json } from "@remix-run/node";
 import { storyblokInit, apiPlugin, getStoryblokApi  } from "@storyblok/react";
 import { isPreview } from "~/utils/isPreview";
 
-import Menus from "./components/Menus";
-
+import Header from "./components/Header";
+import XTag from "./components/XTag";
 import asset from "./blocks/asset";
 import menu from "./blocks/menu";
+import blocks from "./blocks/blocks";
 
-const components = {asset,menu};
+const components = {asset,menu,blocks};
 
 storyblokInit({
   accessToken: "9pCgOUNA8hs00g1hKG8V9wtt",
@@ -49,32 +50,25 @@ export const loader = async ({ params }:any) => {
   let lang = params['*'] || "en";
   lang = lang.substr(0,2);
 
+  const settings=await getData('settings',lang);
   const header=await getData('header',lang);
   const footer=await getData('footer',lang);
 
 
   return json({
     lang,
+    settings,
     header,
     footer
   });
 };
 
 export const links: LinksFunction = () => [
-  { rel: "preconnect", href: "https://fonts.googleapis.com" },
-  {
-    rel: "preconnect",
-    href: "https://fonts.gstatic.com",
-    crossOrigin: "anonymous",
-  },
-  {
-    rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
-  },
+  
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const { lang, header }:any = useLoaderData();
+  const { lang, settings, header }:any = useLoaderData();
   
   return (
     <html lang="en">
@@ -84,11 +78,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <Generic content={header} customSectionMap={{Menus}} />
       <body>
-        {children}
-        <ScrollRestoration />
-        <Scripts />
+        <XTag css="text-center" data={settings.class} dataRef="setting_Class">
+          <Header blok={{content:header,settings:settings.grid[0]} }/>
+          {children}
+          <ScrollRestoration />
+          <Scripts />
+        </XTag>
       </body>
     </html>
   );
