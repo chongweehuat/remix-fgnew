@@ -5,20 +5,20 @@ import {
 
   import XTag from "../components/XTag";
   
-  const Generic = ({ block, customSectionMap = {} }) => {  
-    // console.log('Generic',block);
+  const Generic = ({ blok, customSectionMap = {} }) => {  
+    // console.log('Generic',blok.content.sections);
     const SectionLink = ({link, children}) =>(
-        link.cached_url ? <a href={link.cached_url} >{children}</a> : <>{children}</>
+        link?.cached_url ? <a href={link.cached_url} >{children}</a> : <>{children}</>
     );
     return (
-      <XTag data={block.content.wrapperClass} dataRef="page_wrapperClass">
-        <XTag data={block.content.containerClass} dataRef="page_containerClass">
-          <XTag data={block.content.mainClass} dataRef="page_mainClass">
-            {block.content.sections?.map((section, i) => {
+      <XTag data={blok.content.wrapperClass} dataRef="page_wrapperClass">
+        <XTag data={blok.content.containerClass} dataRef="page_containerClass">
+          <XTag data={blok.content.mainClass} dataRef="page_mainClass">
+            {blok.content.sections?.map((section, i) => {
               //console.log('Generic section',section);
               const Component = customSectionMap[section.name]; 
               return Component ? (
-                <Component key={i} blok={{section,settings:block.settings}} />
+                <Component key={i} blok={{section,settings:blok.settings}} />
               ) : (
                 <XTag key={i} data={section.wrapperClass} dataRef="section_wrapperClass">
                   <XTag data={section.containerClass} dataRef="section_containerClass">

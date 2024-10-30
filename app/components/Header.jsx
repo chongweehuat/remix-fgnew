@@ -51,7 +51,7 @@ const Header = ({ blok }) => {
 
     return (
         <XTag data={blok.content.wrapperClass} dataRef="page_wrapperClass">
-            <XTag data={blok.content.containerClass} dataRef="page_containerClass">
+            <XTag css="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" data={blok.content.containerClass} dataRef="page_containerClass">
                 <XTag data={blok.content.mainClass} dataRef="page_mainClass">
                     <XTag css="flex justify-start lg:w-0 lg:flex-1" data={sections.LogoWrapper.wrapperClass} dataRef="sections_LogoWrapper_wrapperClass">                    
                         <span className="sr-only">{blok.settings.siteTitle}</span>
