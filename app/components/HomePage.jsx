@@ -52,6 +52,8 @@ const HomePage = ({ blok }) => {
     };
 
     const highlights = ({ blok }) => {
+        const items = blok.section.newsHighlights.items;
+        // console.log('highlights',items[0].content.content[0]);
         return (
             <section class="max-w-6xl mx-auto px-4 py-16">
 
@@ -65,7 +67,7 @@ const HomePage = ({ blok }) => {
                     <article class="bg-white rounded-lg shadow-lg overflow-hidden">
                         <a href="https://www.finexusgroup.com/e-invoicing-feasible-for-msmes/" class="block relative">
                             <img
-                                src="https://www.finexusgroup.com/wp-content/uploads/2024/09/The-Star-MSME-Article-768x512.jpg"
+                                src={items[0].image.filename}
                                 alt="The Star MSME Article"
                                 class="w-full h-48 object-cover"
                             />
@@ -74,12 +76,12 @@ const HomePage = ({ blok }) => {
                         <div class="p-6">
                             <h2 class="text-lg font-semibold mb-2">
                                 <a href="https://www.finexusgroup.com/e-invoicing-feasible-for-msmes/" class="hover:text-blue-600">
-                                    e-Invoicing: Feasible for MSMEs?
+                                    {items[0].title}
                                 </a>
                             </h2>
                             <p class="text-gray-500 text-sm mb-4">September 3, 2024</p>
                             <p class="text-gray-700 text-sm mb-4">
-                                MICRO, small, and medium-sized enterprises (MSMEs) represent a remarkable 96.9% of all businesses in Malaysia as of 2023.
+                                {items[0].content.content[0].content[0].text}...
                             </p>
                             <a href="https://www.finexusgroup.com/e-invoicing-feasible-for-msmes/" class="text-blue-600 font-semibold hover:underline">
                                 Read more »
@@ -87,33 +89,39 @@ const HomePage = ({ blok }) => {
                         </div>
                     </article>
 
+                    {items.map((item, i) => {
+                        if (i > 0) {
+                            return (
+                                <article class="bg-white rounded-lg shadow-lg overflow-hidden">
+                                    <a href="https://www.finexusgroup.com/manufacturers-edition-finexus-outlines-case-studies-and-20-must-know-irbm-e-invoicing-rules/" class="block relative">
+                                        <img
+                                            src={item.image.filename}
+                                            alt="Manufacturers IRBM"
+                                            class="w-full h-48 object-cover"
+                                        />
+                                        <div class="absolute inset-0 bg-black opacity-20"></div>
+                                    </a>
+                                    <div class="p-6">
+                                        <h2 class="text-lg font-semibold mb-2">
+                                            <a href="https://www.finexusgroup.com/manufacturers-edition-finexus-outlines-case-studies-and-20-must-know-irbm-e-invoicing-rules/" class="hover:text-blue-600">
+                                            {item.title}
+                                            </a>
+                                        </h2>
+                                        <p class="text-gray-500 text-sm mb-4">September 27, 2024</p>
+                                        <p class="text-gray-700 text-sm mb-4">
+                                        {item.content.content[0].content[0].text}...
+                                        </p>
+                                        <a href="https://www.finexusgroup.com/manufacturers-edition-finexus-outlines-case-studies-and-20-must-know-irbm-e-invoicing-rules/" class="text-blue-600 font-semibold hover:underline">
+                                            Read more »
+                                        </a>
+                                    </div>
+                                </article>
+                            )
+                        }
+                    })}
 
 
 
-                    <article class="bg-white rounded-lg shadow-lg overflow-hidden">
-                        <a href="https://www.finexusgroup.com/manufacturers-edition-finexus-outlines-case-studies-and-20-must-know-irbm-e-invoicing-rules/" class="block relative">
-                            <img
-                                src="https://www.finexusgroup.com/wp-content/uploads/2024/09/300924-01-manufacturers_irbm-00-768x432.jpg"
-                                alt="Manufacturers IRBM"
-                                class="w-full h-48 object-cover"
-                            />
-                            <div class="absolute inset-0 bg-black opacity-20"></div>
-                        </a>
-                        <div class="p-6">
-                            <h2 class="text-lg font-semibold mb-2">
-                                <a href="https://www.finexusgroup.com/manufacturers-edition-finexus-outlines-case-studies-and-20-must-know-irbm-e-invoicing-rules/" class="hover:text-blue-600">
-                                    Manufacturers Edition: Finexus Outlines Case Studies and 20 Must-Know IRBM e-Invoicing Rules
-                                </a>
-                            </h2>
-                            <p class="text-gray-500 text-sm mb-4">September 27, 2024</p>
-                            <p class="text-gray-700 text-sm mb-4">
-                                Malaysia’s manufacturing industry showed a resilient 1.9% year-on-year growth in 1Q2024.
-                            </p>
-                            <a href="https://www.finexusgroup.com/manufacturers-edition-finexus-outlines-case-studies-and-20-must-know-irbm-e-invoicing-rules/" class="text-blue-600 font-semibold hover:underline">
-                                Read more »
-                            </a>
-                        </div>
-                    </article>
 
 
 

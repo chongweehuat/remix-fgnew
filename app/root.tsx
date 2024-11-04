@@ -33,7 +33,7 @@ storyblokInit({
 });
 
 export const loader = async ({ params }:any) => {
-  console.log("root loader");
+  // console.log("root loader");
   let lang = params['*'] || "en";
   lang = lang.substr(0,2);
 
@@ -53,7 +53,7 @@ export const loader = async ({ params }:any) => {
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const { lang, settings, header, footer }:any = useLoaderData();
-  console.log("Layout");
+  // console.log("Layout");
   return (
     <html lang="en">
       <head>
@@ -79,6 +79,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  console.log("App");
+  // console.log("App");
   return <Outlet />;
 }
