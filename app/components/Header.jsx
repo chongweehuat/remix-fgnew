@@ -50,10 +50,11 @@ const Header = ({ blok }) => {
     };
 
     return (
+
         <XTag data={blok.content.wrapperClass} dataRef="page_wrapperClass">
             <XTag css="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" data={blok.content.containerClass} dataRef="page_containerClass">
                 <XTag data={blok.content.mainClass} dataRef="page_mainClass">
-                    <XTag css="flex justify-start lg:w-0 lg:flex-1" data={sections.LogoWrapper.wrapperClass} dataRef="sections_LogoWrapper_wrapperClass">                    
+                    <XTag css="flex justify-start lg:w-0 lg:flex-1" data={sections.LogoWrapper.wrapperClass} dataRef="sections_LogoWrapper_wrapperClass">
                         <span className="sr-only">{blok.settings.siteTitle}</span>
                         <XTag tag="img"
                             css="h-20 w-auto sm:h-10 hidden sm:block"
@@ -82,7 +83,7 @@ const Header = ({ blok }) => {
                         >
                             <span className="sr-only">Open menu</span>
                             <XTag tag={FiMenu} css="h-6 w-6" data={sections.MobileButton.elementClass}
-                            dataRef="sections_MobileButton_elementClass" />
+                                dataRef="sections_MobileButton_elementClass" />
                         </XTag>
                     </XTag>
                     <XTag
@@ -96,27 +97,27 @@ const Header = ({ blok }) => {
                         })}
                     </XTag>
                     {openMenu && (
-                        <XTag 
+                        <XTag
                             css="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
                             data={sections.MobileMenu.wrapperClass}
-                            dataRef="sections_MobileMenu_wrapperClass"    
+                            dataRef="sections_MobileMenu_wrapperClass"
                         >
-                            <XTag 
+                            <XTag
                                 css="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50"
                                 data={sections.MobileMenu.containerClass}
                                 dataRef="sections_MobileMenu_containerClass"
                             >
-                                <XTag 
+                                <XTag
                                     css="pt-5 pb-6 px-5"
                                     data={sections.MobileMenu.elementClass}
                                     dataRef="sections_MobileMenu_elementClass"
                                 >
-                                    <XTag 
+                                    <XTag
                                         css="flex items-center justify-between"
                                         data={sections.MobileMenu.itemClass}
                                         dataRef="sections_MobileMenu_itemClass"
                                     >
-                                        
+
                                         <XTag tag="img"
                                             css="h-8 w-auto"
                                             data={sections.MobileMenu.elements[0].class}
@@ -124,7 +125,7 @@ const Header = ({ blok }) => {
                                             src={sections.MobileMenu.elements[0].asset.filename}
                                             alt={blok.settings.siteTitle}
                                         />
-                                        
+
                                         <div className="-mr-2">
                                             <button
                                                 type="button"
@@ -132,7 +133,7 @@ const Header = ({ blok }) => {
                                                 className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
                                             >
                                                 <span className="sr-only">Close menu</span>
-                                                <XTag tag={FiX} css="h-6 w-6"/>
+                                                <XTag tag={FiX} css="h-6 w-6" />
                                             </button>
                                         </div>
                                     </XTag>
@@ -150,6 +151,7 @@ const Header = ({ blok }) => {
                 </XTag>
             </XTag>
         </XTag>
+
     )
 };
 
