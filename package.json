@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "build": "remix vite:build",
-    "devfgnew": "remix vite:dev --port 3669 --host 0.0.0.0",
+    "devfgnew": "remix vite:dev --port 3670 --host 0.0.0.0",
     "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
-    "start": "remix-serve ./build/server/index.js",
+    "startfgnew": "PORT=3669 remix-serve ./build/server/index.js",
     "typecheck": "tsc"
   },
   "dependencies": {

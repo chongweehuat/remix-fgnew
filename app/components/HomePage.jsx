@@ -92,7 +92,7 @@ const HomePage = ({ blok }) => {
                     {items.map((item, i) => {
                         if (i > 0) {
                             return (
-                                <article class="bg-white rounded-lg shadow-lg overflow-hidden">
+                                <article key={i} class="bg-white rounded-lg shadow-lg overflow-hidden">
                                     <a href="https://www.finexusgroup.com/manufacturers-edition-finexus-outlines-case-studies-and-20-must-know-irbm-e-invoicing-rules/" class="block relative">
                                         <img
                                             src={item.image.filename}

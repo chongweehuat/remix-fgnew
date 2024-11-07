@@ -6,6 +6,7 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from "@remix-run/react";
+import { getCurrentLanguage } from "./utils/langs";
 import type { LinksFunction } from "@remix-run/node";
 import Generic from "./components/Generic";
 
@@ -32,16 +33,14 @@ storyblokInit({
   bridge: isPreview(),
 });
 
-export const loader = async ({ params }:any) => {
-  // console.log("root loader");
-  let lang = params['*'] || "en";
-  lang = lang.substr(0,2);
+export const loader = async ({ params, request }:any) => {
+  const lang = getCurrentLanguage(request);
+  // console.log("root loader lang",lang);
 
   const settings=await getData('settings',lang);
   const header=await getData('header',lang);
   const footer=await getData('footer',lang);
-
-
+  
   return json({
     lang,
     settings,
@@ -54,6 +53,7 @@ export const loader = async ({ params }:any) => {
 export function Layout({ children }: { children: React.ReactNode }) {
   const { lang, settings, header, footer }:any = useLoaderData();
   // console.log("Layout");
+  
   return (
     <html lang="en">
       <head>
