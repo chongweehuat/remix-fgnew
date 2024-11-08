@@ -2,7 +2,9 @@ import { useLoaderData } from "@remix-run/react";
 import getData from "../utils/getData";
 import HomePage from "../components/HomePage";
 import Generic from "../components/Generic";
+import LanguageSelector from "../components/LanguageSelector";
 import { languages, getCurrentLanguage } from "../utils/langs";
+
 
 export const loader = async ({ params, request }) => {
 
@@ -12,7 +14,7 @@ export const loader = async ({ params, request }) => {
   // Extract the language from the URL
   let url = new URL(request.url);
   let pathParts = url.pathname.split("/");
-  const language = getCurrentLanguage(request);
+  const {language, sbLanguage} = getCurrentLanguage(request);
 
   // If the language is not one of the supported languages, it's 'en' and the first part of the URL is part of the slug
 
@@ -29,7 +31,7 @@ export const loader = async ({ params, request }) => {
 
   // console.log("route loader language slug:",language,slug);
 
-  const data = await getData(slug, language);
+  const data = await getData(slug, sbLanguage);
   switch (slug) {
     case 'home':
       const newsHighlights = await getData('/news/highlights', language);
@@ -44,12 +46,18 @@ export const loader = async ({ params, request }) => {
 
 export default function Index() {
   const { slug, data } = useLoaderData();
-  
-  switch (slug) {
-    case 'home':
-      return <HomePage blok={{ content: data }} />;
-    default:
-      return <Generic content={{ content: data }} />;
-  }
 
+  const renderContent = () => {
+    if (slug === "home") {
+      return <HomePage blok={{ content: data }} />;
+    }
+    return <Generic content={{ content: data }} />;
+  };
+
+  return (
+    <>
+      {renderContent()}
+      <LanguageSelector />
+    </>
+  );
 }  

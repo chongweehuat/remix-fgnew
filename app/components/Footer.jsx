@@ -1,92 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
 import { FiLinkedin, FiFacebook, FiInstagram, FiYoutube } from 'react-icons/fi';
 import XTag from "./XTag";
 
 const Footer = ({ blok }) => {
-
-
-    const LanguageSelector = () => {
-        const [isOpen, setIsOpen] = useState(false);
-        const [dropdownWidth, setDropdownWidth] = useState(null);
-        const currentLangRef = useRef(null);
-
-        const [currentLanguage] = useState("简体中文");
-
-        const languages = [
-            { name: "English (UK)", url: "https://www.finexusgroup.com/" },
-            { name: "Bahasa Melayu", url: "https://www.finexusgroup.com/ms/" },
-            { name: "தமிழ்", url: "https://www.finexusgroup.com/ta/" },
-            { name: "简体中文", url: "#" }, // Current language
-        ];
-
-        // Filter out the current language from the list
-        const availableLanguages = languages.filter(
-            (language) => language.name !== currentLanguage
-        );
-
-        // Show and hide the language options on hover
-        const handleMouseEnter = () => setIsOpen(true);
-        const handleMouseLeave = () => setIsOpen(false);
-
-        // Adjust dropdown width to match current language button width
-        useEffect(() => {
-            if (currentLangRef.current) {
-                setDropdownWidth(currentLangRef.current.offsetWidth);
-            }
-        }, [isOpen]);
-
-        return (
-            <div
-                id="trp-floater-ls"
-                className="fixed bottom-4 right-8" // Adjusted padding to prevent touching scrollbar
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-            >
-                <div className="relative inline-block text-left">
-                    {/* Current Language */}
-                    <div
-                        id="trp-floater-ls-current-language"
-                        ref={currentLangRef}
-                        className={`bg-gray-800 text-white px-4 py-2 shadow-lg ${isOpen ? "" : "w-max"
-                            } text-left`}
-                        style={{ width: isOpen ? dropdownWidth : "auto" }}
-                    >
-                        <a
-                            href="#"
-                            className="text-gray-400"
-                            onClick={(e) => e.preventDefault()}
-                        >
-                            {currentLanguage}
-                        </a>
-                    </div>
-
-                    {/* Language List: Popup Menu */}
-                    {isOpen && (
-                        <div
-                            id="trp-floater-ls-language-list"
-                            className="bg-gray-800 text-white shadow-lg absolute bottom-full left-0 text-left"
-                            style={{ width: dropdownWidth }} // Set the width to match the current language
-                        >
-                            <div className="flex flex-col">
-                                {availableLanguages.map((language) => (
-                                    <a
-                                        key={language.name}
-                                        href={language.url}
-                                        title={language.name}
-                                        className="hover:text-gray-400 px-4 py-2" // Ensure consistent padding
-                                    >
-                                        {language.name}
-                                    </a>
-                                ))}
-                            </div>
-                        </div>
-                    )}
-                </div>
-            </div>
-        );
-    };
-
-
+    
     const sections = blok.content.sections.reduce((acc, item) => {
         const { name, ...rest } = item;
         acc[name] = rest;
@@ -232,7 +148,6 @@ const Footer = ({ blok }) => {
                     </XTag>
                 </XTag>
             </XTag>
-            <LanguageSelector />
         </>
     );
 }

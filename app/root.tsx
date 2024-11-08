@@ -34,15 +34,15 @@ storyblokInit({
 });
 
 export const loader = async ({ params, request }:any) => {
-  const lang = getCurrentLanguage(request);
+  const {language, sbLanguage} = getCurrentLanguage(request);
   // console.log("root loader lang",lang);
 
-  const settings=await getData('settings',lang);
-  const header=await getData('header',lang);
-  const footer=await getData('footer',lang);
+  const settings=await getData('settings',sbLanguage);
+  const header=await getData('header',sbLanguage);
+  const footer=await getData('footer',sbLanguage);
   
   return json({
-    lang,
+    language,
     settings,
     header,
     footer
@@ -51,7 +51,7 @@ export const loader = async ({ params, request }:any) => {
 
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const { lang, settings, header, footer }:any = useLoaderData();
+  const { settings, header, footer }:any = useLoaderData();
   // console.log("Layout");
   
   return (
